@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Practice;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,5 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Practice::factory(10)->create();
     }
 }
