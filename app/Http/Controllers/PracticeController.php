@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class PracticeController extends Controller
 {
     public function sample()
     {
-        return response('practice', 200);
+        return view('practice', ['testParam' => '練習']);
     }
     public function sample2()
     {
         $test = 'practice2';
-        return response($test, 200);
+        return view('practice2', ['testParam' => $test]);
     }
     public function sample3()
     {
         $test = 'test';
-        return response($test, 200);
+        return view('practice3', ['testParam' => $test]);
     }
 }
