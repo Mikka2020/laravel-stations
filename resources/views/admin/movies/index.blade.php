@@ -23,7 +23,7 @@
       <td><img src="{{$movie->image_url}}" alt=""></td>
       <td>{{ $movie->published_year }}年</td>
       <td>{{ $movie->is_showing ? "上映中" : "上映予定"; }}</td>
-      <td>{{ $movie->description }}</td>
+      <td>{!! nl2br(e($movie->description)) !!}</td>
     </tr>
     @endforeach
   </table>
