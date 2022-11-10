@@ -27,7 +27,7 @@ class MovieController extends Controller
         $request->validate([
             'title' => ['required','unique:movies,title'],
             'image_url' => ['required', 'url'],
-            'published_year' => ['required', 'numeric', 'min:1900', 'max:'.date('Y')],
+            'published_year' => ['required', 'numeric'],
             'is_showing' => ['required', 'boolean'],
             'description' => 'required',
         ]);
@@ -37,6 +37,29 @@ class MovieController extends Controller
         $movie->is_showing = $request->is_showing ? true : false;
         $movie->description = $request->description;
         $movie->save();
+        return redirect('/admin/movies');
+    }
+    public function edit($id)
+    {
+        $movie = Movie::find($id);
+        return view('admin.movies.edit', ["movie" => $movie]);
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => ['required','unique:movies,title'],
+            'image_url' => ['required', 'url'],
+            'published_year' => ['required', 'numeric'],
+            'is_showing' => 'boolean',
+            'description' => 'required',
+        ]);
+        Movie::find($id)->update([
+            'title' => $request->title,
+            'image_url' => $request->image_url,
+            'published_year' => $request->published_year,
+            'is_showing' => $request->is_showing ? true : false,
+            'description' => $request->description,
+        ]);
         return redirect('/admin/movies');
     }
 }

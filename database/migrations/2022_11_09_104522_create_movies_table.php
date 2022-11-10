@@ -13,7 +13,7 @@ return new class () extends Migration {
     public function up()
     {
         Schema::create('movies', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id')->autoIncrement()->index();
             $table->text('title');
             $table->text('image_url');
             $table->timestamps();

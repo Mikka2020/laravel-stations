@@ -16,6 +16,7 @@
       <th>公開年</th>
       <th>上映中かどうか</th>
       <th>概要</th>
+      <th>編集</th>
     </tr>
     @foreach ($movies as $movie)
     <tr>
@@ -24,6 +25,12 @@
       <td>{{ $movie->published_year }}年</td>
       <td>{{ $movie->is_showing ? "上映中" : "上映予定"; }}</td>
       <td>{!! nl2br(e($movie->description)) !!}</td>
+      <td>
+        <form action="movies/{{$movie->id}}/edit" method="get">
+          @csrf
+          <button type="submit">編集</button>
+        </form>
+      </td>
     </tr>
     @endforeach
   </table>
