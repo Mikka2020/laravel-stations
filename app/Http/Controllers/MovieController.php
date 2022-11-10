@@ -62,4 +62,14 @@ class MovieController extends Controller
         ]);
         return redirect('/admin/movies');
     }
+    public function destroy($id)
+    {
+        // findで見つかったときのみdeleteする、存在しない場合は404を返す
+        if (Movie::find($id)) {
+            Movie::find($id)->delete();
+        } else {
+            abort(404);
+        }
+        return redirect('/admin/movies');
+    }
 }

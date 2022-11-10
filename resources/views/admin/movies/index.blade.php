@@ -30,6 +30,11 @@
           @csrf
           <button type="submit">編集</button>
         </form>
+        <form action="movies/{{$movie->id}}/destroy" method="post" onclick='return confirm("削除しますか？");'>
+          @csrf
+          @method('DELETE')
+          <button type="submit">削除</button>
+        </form>
       </td>
     </tr>
     @endforeach
