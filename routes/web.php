@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PracticeController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\SheetController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,6 +14,7 @@ Route::get('/practice2', [PracticeController::class, 'sample2']);
 Route::get('/practice3', [PracticeController::class, 'sample3']);
 Route::get('/getPractice', [PracticeController::class, 'getPractice']);
 Route::get('/movies', [MovieController::class, 'index']);
+Route::get('/sheets', [SheetController::class, 'index']);
 Route::get('/admin/movies', [MovieController::class, 'adminIndex']);
 Route::get('/admin/movies/create', [MovieController::class, 'create']);
 Route::post('/admin/movies/store', [MovieController::class, 'store']);

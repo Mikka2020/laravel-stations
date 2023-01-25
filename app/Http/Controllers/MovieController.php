@@ -7,9 +7,12 @@ use App\Models\Movie;
 
 class MovieController extends Controller
 {
-    public function index()
+    public function index(Movie $movie)
     {
-        $movies = Movie::all();
+        // 検索結果を取得
+        $keyword = request()->input('keyword');
+        $is_showing = request()->input('is_showing');
+        $movies = $movie->search($keyword, $is_showing);
         return view('movies.index', ["movies" => $movies]);
     }
     public function adminIndex()
