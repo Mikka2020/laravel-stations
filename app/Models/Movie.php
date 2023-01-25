@@ -16,6 +16,11 @@ class Movie extends Model
         'description',
     ];
 
+    // 映画とスケジュールは1対多の関係
+    public function schedules()
+    {
+        return $this->hasMany('App\Models\Schedule');
+    }
     public function search($keyword, $is_showing)
     {
         // キーワードがある場合

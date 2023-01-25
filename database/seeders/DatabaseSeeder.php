@@ -3,10 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Models\Practice;
 use App\Models\Movie;
 use App\Models\Sheet;
-use Illuminate\Support\Facades\DB;
+use App\Models\Schedule;
 
 class DatabaseSeeder extends Seeder
 {
@@ -37,8 +38,14 @@ class DatabaseSeeder extends Seeder
             ['id' => 15, 'column' => 5, 'row' => 'c'],
         ];
 
+        // sheetがあったら削除
+        if (Sheet::count() > 0) {
+            Sheet::truncate();
+        }
         foreach ($seeds as $seed) {
             DB::table('sheets')->insert($seed);
         }
+
+        Schedule::factory(10)->create();
     }
 }
