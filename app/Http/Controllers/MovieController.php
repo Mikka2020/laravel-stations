@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Models\Schedule;
 
 class MovieController extends Controller
 {
@@ -15,10 +16,26 @@ class MovieController extends Controller
         $movies = $movie->search($keyword, $is_showing);
         return view('movies.index', ["movies" => $movies]);
     }
+    public function detail($id, Schedule $schedule)
+    {
+        $movie = Movie::find($id);
+        // movie_idのscheduleを取得
+        $schedules = $schedule->where('movie_id', $id)->get();
+
+        return view('movies.detail', ["movie" => $movie, "schedules" => $schedules]);
+    }
     public function adminIndex()
     {
         $movies = Movie::all();
         return view('admin.movies.index', ["movies" => $movies]);
+    }
+    public function adminDetail($id, Schedule $schedule)
+    {
+        $movie = Movie::find($id);
+        // movie_idのscheduleを取得
+        $schedules = $schedule->where('movie_id', $id)->get();
+
+        return view('admin.movies.detail', ["movie" => $movie, "schedules" => $schedules]);
     }
     public function create()
     {

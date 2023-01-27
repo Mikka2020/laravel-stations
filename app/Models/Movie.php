@@ -26,7 +26,6 @@ class Movie extends Model
         // キーワードがある場合
         $query = $this;
         if ($keyword) {
-            // $query = $query->where('title', 'like', "%{$keyword}%");
             // タイトルまたは説明文にキーワードが含まれるものを取得
             $query = $query->where(function ($query) use ($keyword) {
                 $query->where('title', 'like', "%{$keyword}%")

@@ -20,10 +20,10 @@
     </tr>
     @foreach ($movies as $movie)
     <tr>
-      <td>{{ $movie->title }}</td>
+      <td><a href='/admin/movies/{{$movie->id}}'>{{ $movie->title }}</a></td>
       <td><img src="{{$movie->image_url}}" alt=""></td>
       <td>{{ $movie->published_year }}年</td>
-      <td>{{ $movie->is_showing ? "上映中" : "上映予定"; }}</td>
+      <td>{{ $movie->is_showing ? "上映中" : "上映予定" }}</td>
       <td>{!! nl2br(e($movie->description)) !!}</td>
       <td>
         <form action="movies/{{$movie->id}}/edit" method="get">
